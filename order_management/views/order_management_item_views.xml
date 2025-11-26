@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <!-- Tree View -->
+    <record id="view_order_management_item_tree" model="ir.ui.view">
+        <field name="name">order.management.item.tree</field>
+        <field name="model">order.management.item</field>
+        <field name="arch" type="xml">
+            <tree string="Order Items">
+                <field name="order_id"/>
+                <field name="product_name"/>
+                <field name="quantity"/>
+                <field name="unit_price" widget="monetary"/>
+                <field name="subtotal" widget="monetary"/>
+                <field name="currency_id" column_invisible="1"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+    
+    <!-- Form View -->
+    <record id="view_order_management_item_form" model="ir.ui.view">
+        <field name="name">order.management.item.form</field>
+        <field name="model">order.management.item</field>
+        <field name="arch" type="xml">
+            <form string="Order Item">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="order_id"/>
+                            <field name="product_id"/>
+                            <field name="product_name"/>
+                        </group>
+                        <group>
+                            <field name="quantity"/>
+                            <field name="unit_price" widget="monetary"/>
+                            <field name="subtotal" widget="monetary"/>
+                            <field name="currency_id" invisible="1"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="description"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+</odoo>

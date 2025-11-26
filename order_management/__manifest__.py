@@ -22,6 +22,8 @@
         'https://www.codezone-eg.com',
     'depends': ['base', 'mail', 'product'],
     'data': [
+        'security/order_security.xml',
+        'security/ir.model.access.csv',
         'data/sequence_data.xml',
     ],
     'installable':

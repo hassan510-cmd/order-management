@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <!-- Main Menu -->
+    <menuitem id="menu_order_management_root"
+              name="Order Management"
+              sequence="10"
+              web_icon="order_management,static/description/icon.png"/>
+    
+    <!-- Orders Menu -->
+    <menuitem id="menu_order_management"
+              name="Orders"
+              parent="menu_order_management_root"
+              action="action_order_management"
+              sequence="10"/>
+    
+    <!-- Configuration Menu -->
+    <menuitem id="menu_order_configuration"
+              name="Configuration"
+              parent="menu_order_management_root"
+              sequence="100"
+              groups="group_order_manager"/>
+    
+</odoo>
