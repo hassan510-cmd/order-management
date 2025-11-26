@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <template id="report_order_document">
+    <t t-call="web.html_container">
+      <t t-foreach="docs" t-as="o">
+        <t t-call="web.external_layout">
+          <div class="page">
+
+            <!-- Header Section -->
+            <div class="order-report-header">
+              <div class="header-row">
+                <div class="header-left">
+                  <div class="order-info-item">
+                    <span class="order-info-label">Order Reference:</span>
+                    <span t-field="o.name" />
+                  </div>
+                  <div class="order-info-item">
+                    <span class="order-info-label">Order Date:</span>
+                    <span t-field="o.order_date" t-options='{"widget": "date"}' />
+                  </div>
+                  <div class="order-info-item">
+                    <span class="order-info-label">Status:</span>
+                    <span t-field="o.state" class="status-badge"
+                      t-attf-style="background-color: #{
+                                                  '#6c757d' if o.state == 'draft' else
+                                                  '#0d6efd' if o.state == 'preparing' else
+                                                  '#ffc107; color: #000;' if o.state == 'packing' else
+                                                  '#198754' if o.state in ['ready', 'delivered'] else
+                                                  '#dc3545'
+                                              };" />
+                  </div>
+                </div>
+                <div class="header-right">
+                  <div t-if="o.company_id.logo">
+                    <img t-att-src="image_data_uri(o.company_id.logo)"
+                      style="max-height: 70px; max-width: 200px;"
+                      alt="Company Logo" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Customer and Salesperson Information -->
+            <div class="info-cards-row">
+              <div class="info-card card-left">
+                <div class="info-card-title">Customer Information</div>
+                <div class="info-card-content">
+                  <div t-field="o.customer_id"
+                    t-options='{"widget": "contact", "fields": ["name", "address", "phone", "email"], "no_marker": True}' />
+                </div>
+              </div>
+              <div class="info-card">
+                <div class="info-card-title">Salesperson Information</div>
+                <div class="info-card-content">
+                  <div>
+                    <strong>Name:</strong>
+                    <span t-field="o.user_id.name" />
+                  </div>
+                  <div t-if="o.user_id.email">
+                    <strong>Email:</strong>
+                    <span t-field="o.user_id.email" />
+                  </div>
+                  <div t-if="o.user_id.phone">
+                    <strong>Phone:</strong>
+                    <span t-field="o.user_id.phone" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Order Items Table -->
+            <h4 class="section-title">Order Items</h4>
+            <table class="items-table">
+              <thead>
+                <tr>
+                  <th style="width: 5%; text-align: center;">#</th>
+                  <th style="width: 25%; text-align: left;">Product</th>
+                  <th style="width: 30%; text-align: left;">Description</th>
+                  <th style="width: 10%; text-align: right;">Quantity</th>
+                  <th style="width: 15%; text-align: right;">Unit Price</th>
+                  <th style="width: 15%; text-align: right;">Subtotal</th>
+                </tr>
+              </thead>
+              <tbody>
+                <t t-set="line_num" t-value="0" />
+                <t t-foreach="o.item_ids" t-as="item">
+                  <t t-set="line_num" t-value="line_num + 1" />
+                  <tr>
+                    <td style="text-align: center;">
+                      <span t-esc="line_num" />
+                    </td>
+                    <td>
+                      <span t-field="item.product_name" />
+                    </td>
+                    <td>
+                      <span t-field="item.description" />
+                    </td>
+                    <td style="text-align: right;">
+                      <span t-field="item.quantity" />
+                    </td>
+                    <td style="text-align: right;">
+                      <span t-field="item.unit_price"
+                        t-options='{"widget": "monetary", "display_currency": o.currency_id}' />
+                    </td>
+                    <td style="text-align: right; font-weight: 600;">
+                      <span t-field="item.subtotal"
+                        t-options='{"widget": "monetary", "display_currency": o.currency_id}' />
+                    </td>
+                  </tr>
+                </t>
+              </tbody>
+            </table>
+
+            <!-- Summary Section -->
+            <div class="summary-row">
+              <div class="summary-left">
+                <div t-if="o.notes" class="notes-box">
+                  <div class="notes-box-title">Notes:</div>
+                  <div class="notes-box-content">
+                    <p t-field="o.notes" style="margin: 0;" />
+                  </div>
+                </div>
+              </div>
+              <div class="summary-right">
+                <table class="totals-table">
+                  <tr class="subtotal-row">
+                    <td style="text-align: right;">
+                      <strong>Subtotal:</strong>
+                    </td>
+                    <td style="text-align: right; width: 40%;">
+                      <span t-field="o.total_amount"
+                        t-options='{"widget": "monetary", "display_currency": o.currency_id}' />
+                    </td>
+                  </tr>
+                  <tr class="total-row">
+                    <td style="text-align: right;">Total Amount:</td>
+                    <td style="text-align: right;">
+                      <span t-field="o.total_amount"
+                        t-options='{"widget": "monetary", "display_currency": o.currency_id}' />
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+
+            <!-- Footer Information -->
+            <div class="report-footer">
+              <div class="footer-thanks">
+                Thank you for your business!
+              </div>
+              <div class="footer-contact" t-if="o.company_id.email or o.company_id.phone">
+                <span t-if="o.company_id.phone">Phone: <span t-field="o.company_id.phone" /></span>
+                <span t-if="o.company_id.email and o.company_id.phone"> | </span>
+                <span t-if="o.company_id.email">Email: <span t-field="o.company_id.email" /></span>
+              </div>
+            </div>
+
+          </div>
+        </t>
+      </t>
+    </t>
+  </template>
+
+</odoo>

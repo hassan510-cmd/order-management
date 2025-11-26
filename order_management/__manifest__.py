@@ -25,11 +25,17 @@
         'security/order_security.xml',
         'security/ir.model.access.csv',
         'data/sequence_data.xml',
+        'data/paperformat_data.xml',
+        'reports/order_report.xml',
         'views/order_management_views.xml',
         'views/order_management_item_views.xml',
         'views/order_menu.xml',
+        'reports/order_report_template.xml',
     ],
     'demo': ['demo/demo_data.xml',],
+    'assets': {
+        'web.report_assets_pdf': ['order_management/static/src/css/order_report.css',],
+    },
     'installable':
         True,
     'application':
