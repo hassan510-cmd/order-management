@@ -25,6 +25,9 @@
         'security/order_security.xml',
         'security/ir.model.access.csv',
         'data/sequence_data.xml',
+        'views/order_management_views.xml',
+        'views/order_management_item_views.xml',
+        'views/order_menu.xml',
     ],
     'installable':
         True,
