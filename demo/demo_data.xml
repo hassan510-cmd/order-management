@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        
+        <!-- Demo Customers -->
+        <record id="partner_demo_customer_1" model="res.partner">
+            <field name="name">Deco Addict</field>
+            <field name="street">325 Rue du Bac</field>
+            <field name="city">Paris</field>
+            <field name="zip">75007</field>
+            <field name="country_id" ref="base.fr"/>
+            <field name="phone">+33 1 23 45 67 89</field>
+            <field name="email">contact@decoaddict.com</field>
+            
+        </record>
+        
+        <record id="partner_demo_customer_2" model="res.partner">
+            <field name="name">Gemini Furniture</field>
+            <field name="street">5201 Somewhere Street</field>
+            <field name="city">Los Angeles</field>
+            <field name="zip">90001</field>
+            <field name="state_id" ref="base.state_us_5"/>
+            <field name="country_id" ref="base.us"/>
+            <field name="phone">+1 555-123-4567</field>
+            <field name="email">info@geminifurniture.com</field>
+            
+        </record>
+        
+        <record id="partner_demo_customer_3" model="res.partner">
+            <field name="name">Ready Mat</field>
+            <field name="street">23 Oxford Street</field>
+            <field name="city">London</field>
+            <field name="zip">WC1N 1AB</field>
+            <field name="country_id" ref="base.uk"/>
+            <field name="phone">+44 20 7123 4567</field>
+            <field name="email">sales@readymat.co.uk</field>
+            
+        </record>
+        
+        <record id="partner_demo_customer_4" model="res.partner">
+            <field name="name">Azure Interior</field>
+            <field name="street">52 Champs-Elysées</field>
+            <field name="city">Paris</field>
+            <field name="zip">75008</field>
+            <field name="country_id" ref="base.fr"/>
+            <field name="phone">+33 1 98 76 54 32</field>
+            <field name="email">contact@azureinterior.fr</field>
+            
+        </record>
+        
+        <record id="partner_demo_customer_5" model="res.partner">
+            <field name="name">The Jackson Group</field>
+            <field name="street">100 Park Avenue</field>
+            <field name="city">New York</field>
+            <field name="zip">10017</field>
+            <field name="state_id" ref="base.state_us_27"/>
+            <field name="country_id" ref="base.us"/>
+            <field name="phone">+1 212-555-7890</field>
+            <field name="email">info@jacksongroup.com</field>
+            
+        </record>
+        
+        <!-- Demo Products -->
+        <record id="product_demo_desk" model="product.product">
+            <field name="name">Office Desk</field>
+            <field name="list_price">450.00</field>
+            <field name="standard_price">300.00</field>
+            <field name="type">consu</field>
+            <field name="sale_ok">1</field>
+            <field name="description_sale">Modern office desk with cable management system</field>
+        </record>
+        
+        <record id="product_demo_chair" model="product.product">
+            <field name="name">Ergonomic Office Chair</field>
+            <field name="list_price">250.00</field>
+            <field name="standard_price">150.00</field>
+            <field name="type">consu</field>
+            <field name="sale_ok">1</field>
+            <field name="description_sale">Comfortable ergonomic chair with lumbar support</field>
+        </record>
+        
+        <record id="product_demo_laptop" model="product.product">
+            <field name="name">Business Laptop</field>
+            <field name="list_price">1200.00</field>
+            <field name="standard_price">850.00</field>
+            <field name="type">consu</field>
+            <field name="sale_ok">1</field>
+            <field name="description_sale">High-performance laptop for business use</field>
+        </record>
+        
+        <record id="product_demo_monitor" model="product.product">
+            <field name="name">27-inch Monitor</field>
+            <field name="list_price">350.00</field>
+            <field name="standard_price">220.00</field>
+            <field name="type">consu</field>
+            <field name="sale_ok">1</field>
+            <field name="description_sale">Full HD 27-inch display with adjustable stand</field>
+        </record>
+        
+        <record id="product_demo_keyboard" model="product.product">
+            <field name="name">Wireless Keyboard</field>
+            <field name="list_price">75.00</field>
+            <field name="standard_price">40.00</field>
+            <field name="type">consu</field>
+            <field name="sale_ok">1</field>
+            <field name="description_sale">Wireless mechanical keyboard with backlight</field>
+        </record>
+        
+        <record id="product_demo_mouse" model="product.product">
+            <field name="name">Wireless Mouse</field>
+            <field name="list_price">45.00</field>
+            <field name="standard_price">25.00</field>
+            <field name="type">consu</field>
+            <field name="sale_ok">1</field>
+            <field name="description_sale">Ergonomic wireless mouse with precision tracking</field>
+        </record>
+        
+        <record id="product_demo_cabinet" model="product.product">
+            <field name="name">Filing Cabinet</field>
+            <field name="list_price">180.00</field>
+            <field name="standard_price">110.00</field>
+            <field name="type">consu</field>
+            <field name="sale_ok">1</field>
+            <field name="description_sale">3-drawer filing cabinet with lock</field>
+        </record>
+        
+        <record id="product_demo_lamp" model="product.product">
+            <field name="name">Desk Lamp</field>
+            <field name="list_price">65.00</field>
+            <field name="standard_price">35.00</field>
+            <field name="type">consu</field>
+            <field name="sale_ok">1</field>
+            <field name="description_sale">LED desk lamp with adjustable brightness</field>
+        </record>
+        
+        <!-- Demo Order 1: Draft State -->
+        <record id="order_demo_1" model="order.management">
+            <field name="name">ORD00001</field>
+            <field name="customer_id" ref="partner_demo_customer_1"/>
+            <field name="order_date" eval="(DateTime.now() - timedelta(days=1)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="user_id" ref="base.user_admin"/>
+            <field name="state">draft</field>
+            <field name="notes">Customer requested expedited processing. Please prioritize this order.</field>
+        </record>
+        
+        <record id="order_demo_1_item_1" model="order.management.item">
+            <field name="order_id" ref="order_demo_1"/>
+            <field name="product_id" ref="product_demo_desk"/>
+            <field name="product_name">Office Desk</field>
+            <field name="description">Modern office desk with cable management system</field>
+            <field name="quantity">5</field>
+            <field name="unit_price">450.00</field>
+            <field name="sequence">10</field>
+        </record>
+        
+        <record id="order_demo_1_item_2" model="order.management.item">
+            <field name="order_id" ref="order_demo_1"/>
+            <field name="product_id" ref="product_demo_chair"/>
+            <field name="product_name">Ergonomic Office Chair</field>
+            <field name="description">Comfortable ergonomic chair with lumbar support</field>
+            <field name="quantity">5</field>
+            <field name="unit_price">250.00</field>
+            <field name="sequence">20</field>
+        </record>
+        
+        <record id="order_demo_1_item_3" model="order.management.item">
+            <field name="order_id" ref="order_demo_1"/>
+            <field name="product_id" ref="product_demo_lamp"/>
+            <field name="product_name">Desk Lamp</field>
+            <field name="description">LED desk lamp with adjustable brightness</field>
+            <field name="quantity">5</field>
+            <field name="unit_price">65.00</field>
+            <field name="sequence">30</field>
+        </record>
+        
+        <!-- Demo Order 2: Preparing State -->
+        <record id="order_demo_2" model="order.management">
+            <field name="name">ORD00002</field>
+            <field name="customer_id" ref="partner_demo_customer_2"/>
+            <field name="order_date" eval="(DateTime.now() - timedelta(days=3)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="user_id" ref="base.user_admin"/>
+            <field name="state">preparing</field>
+            <field name="notes">Large order for new office setup. Delivery address to be confirmed.</field>
+        </record>
+        
+        <record id="order_demo_2_item_1" model="order.management.item">
+            <field name="order_id" ref="order_demo_2"/>
+            <field name="product_id" ref="product_demo_laptop"/>
+            <field name="product_name">Business Laptop</field>
+            <field name="description">High-performance laptop for business use</field>
+            <field name="quantity">10</field>
+            <field name="unit_price">1200.00</field>
+            <field name="sequence">10</field>
+        </record>
+        
+        <record id="order_demo_2_item_2" model="order.management.item">
+            <field name="order_id" ref="order_demo_2"/>
+            <field name="product_id" ref="product_demo_monitor"/>
+            <field name="product_name">27-inch Monitor</field>
+            <field name="description">Full HD 27-inch display with adjustable stand</field>
+            <field name="quantity">10</field>
+            <field name="unit_price">350.00</field>
+            <field name="sequence">20</field>
+        </record>
+        
+        <record id="order_demo_2_item_3" model="order.management.item">
+            <field name="order_id" ref="order_demo_2"/>
+            <field name="product_id" ref="product_demo_keyboard"/>
+            <field name="product_name">Wireless Keyboard</field>
+            <field name="description">Wireless mechanical keyboard with backlight</field>
+            <field name="quantity">10</field>
+            <field name="unit_price">75.00</field>
+            <field name="sequence">30</field>
+        </record>
+        
+        <record id="order_demo_2_item_4" model="order.management.item">
+            <field name="order_id" ref="order_demo_2"/>
+            <field name="product_id" ref="product_demo_mouse"/>
+            <field name="product_name">Wireless Mouse</field>
+            <field name="description">Ergonomic wireless mouse with precision tracking</field>
+            <field name="quantity">10</field>
+            <field name="unit_price">45.00</field>
+            <field name="sequence">40</field>
+        </record>
+        
+        <!-- Demo Order 3: Packing State -->
+        <record id="order_demo_3" model="order.management">
+            <field name="name">ORD00003</field>
+            <field name="customer_id" ref="partner_demo_customer_3"/>
+            <field name="order_date" eval="(DateTime.now() - timedelta(days=5)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="user_id" ref="base.user_admin"/>
+            <field name="state">packing</field>
+            <field name="notes">Standard delivery. Customer available Mon-Fri 9AM-5PM.</field>
+        </record>
+        
+        <record id="order_demo_3_item_1" model="order.management.item">
+            <field name="order_id" ref="order_demo_3"/>
+            <field name="product_id" ref="product_demo_desk"/>
+            <field name="product_name">Office Desk</field>
+            <field name="description">Modern office desk with cable management system</field>
+            <field name="quantity">3</field>
+            <field name="unit_price">450.00</field>
+            <field name="sequence">10</field>
+        </record>
+        
+        <record id="order_demo_3_item_2" model="order.management.item">
+            <field name="order_id" ref="order_demo_3"/>
+            <field name="product_id" ref="product_demo_cabinet"/>
+            <field name="product_name">Filing Cabinet</field>
+            <field name="description">3-drawer filing cabinet with lock</field>
+            <field name="quantity">6</field>
+            <field name="unit_price">180.00</field>
+            <field name="sequence">20</field>
+        </record>
+        
+        <!-- Demo Order 4: Ready State -->
+        <record id="order_demo_4" model="order.management">
+            <field name="name">ORD00004</field>
+            <field name="customer_id" ref="partner_demo_customer_4"/>
+            <field name="order_date" eval="(DateTime.now() - timedelta(days=7)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="user_id" ref="base.user_admin"/>
+            <field name="state">ready</field>
+            <field name="notes">VIP customer - handle with care. White glove delivery service requested.</field>
+        </record>
+        
+        <record id="order_demo_4_item_1" model="order.management.item">
+            <field name="order_id" ref="order_demo_4"/>
+            <field name="product_id" ref="product_demo_chair"/>
+            <field name="product_name">Ergonomic Office Chair</field>
+            <field name="description">Comfortable ergonomic chair with lumbar support</field>
+            <field name="quantity">20</field>
+            <field name="unit_price">250.00</field>
+            <field name="sequence">10</field>
+        </record>
+        
+        <record id="order_demo_4_item_2" model="order.management.item">
+            <field name="order_id" ref="order_demo_4"/>
+            <field name="product_id" ref="product_demo_desk"/>
+            <field name="product_name">Office Desk</field>
+            <field name="description">Modern office desk with cable management system</field>
+            <field name="quantity">20</field>
+            <field name="unit_price">450.00</field>
+            <field name="sequence">20</field>
+        </record>
+        
+        <!-- Demo Order 5: Delivered State -->
+        <record id="order_demo_5" model="order.management">
+            <field name="name">ORD00005</field>
+            <field name="customer_id" ref="partner_demo_customer_5"/>
+            <field name="order_date" eval="(DateTime.now() - timedelta(days=10)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="user_id" ref="base.user_admin"/>
+            <field name="state">delivered</field>
+            <field name="notes">Delivered on time. Customer satisfied with products. Requested quote for additional items.</field>
+        </record>
+        
+        <record id="order_demo_5_item_1" model="order.management.item">
+            <field name="order_id" ref="order_demo_5"/>
+            <field name="product_id" ref="product_demo_laptop"/>
+            <field name="product_name">Business Laptop</field>
+            <field name="description">High-performance laptop for business use</field>
+            <field name="quantity">15</field>
+            <field name="unit_price">1200.00</field>
+            <field name="sequence">10</field>
+        </record>
+        
+        <record id="order_demo_5_item_2" model="order.management.item">
+            <field name="order_id" ref="order_demo_5"/>
+            <field name="product_id" ref="product_demo_monitor"/>
+            <field name="product_name">27-inch Monitor</field>
+            <field name="description">Full HD 27-inch display with adjustable stand</field>
+            <field name="quantity">15</field>
+            <field name="unit_price">350.00</field>
+            <field name="sequence">20</field>
+        </record>
+        
+        <record id="order_demo_5_item_3" model="order.management.item">
+            <field name="order_id" ref="order_demo_5"/>
+            <field name="product_id" ref="product_demo_keyboard"/>
+            <field name="product_name">Wireless Keyboard</field>
+            <field name="description">Wireless mechanical keyboard with backlight</field>
+            <field name="quantity">15</field>
+            <field name="unit_price">75.00</field>
+            <field name="sequence">30</field>
+        </record>
+        
+        <record id="order_demo_5_item_4" model="order.management.item">
+            <field name="order_id" ref="order_demo_5"/>
+            <field name="product_id" ref="product_demo_mouse"/>
+            <field name="product_name">Wireless Mouse</field>
+            <field name="description">Ergonomic wireless mouse with precision tracking</field>
+            <field name="quantity">15</field>
+            <field name="unit_price">45.00</field>
+            <field name="sequence">40</field>
+        </record>
+        
+        <!-- Demo Order 6: Cancelled State -->
+        <record id="order_demo_6" model="order.management">
+            <field name="name">ORD00006</field>
+            <field name="customer_id" ref="partner_demo_customer_1"/>
+            <field name="order_date" eval="(DateTime.now() - timedelta(days=2)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="user_id" ref="base.user_admin"/>
+            <field name="state">cancelled</field>
+            <field name="notes">Customer cancelled due to budget constraints. May reorder next quarter.</field>
+        </record>
+        
+        <record id="order_demo_6_item_1" model="order.management.item">
+            <field name="order_id" ref="order_demo_6"/>
+            <field name="product_id" ref="product_demo_cabinet"/>
+            <field name="product_name">Filing Cabinet</field>
+            <field name="description">3-drawer filing cabinet with lock</field>
+            <field name="quantity">8</field>
+            <field name="unit_price">180.00</field>
+            <field name="sequence">10</field>
+        </record>
+        
+        <!-- Demo Order 7: Another Preparing State -->
+        <record id="order_demo_7" model="order.management">
+            <field name="name">ORD00007</field>
+            <field name="customer_id" ref="partner_demo_customer_2"/>
+            <field name="order_date" eval="(DateTime.now() - timedelta(days=4)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="user_id" ref="base.user_admin"/>
+            <field name="state">preparing</field>
+            <field name="notes">Rush order - customer needs by end of week.</field>
+        </record>
+        
+        <record id="order_demo_7_item_1" model="order.management.item">
+            <field name="order_id" ref="order_demo_7"/>
+            <field name="product_id" ref="product_demo_desk"/>
+            <field name="product_name">Office Desk</field>
+            <field name="description">Modern office desk with cable management system</field>
+            <field name="quantity">2</field>
+            <field name="unit_price">450.00</field>
+            <field name="sequence">10</field>
+        </record>
+        
+        <record id="order_demo_7_item_2" model="order.management.item">
+            <field name="order_id" ref="order_demo_7"/>
+            <field name="product_id" ref="product_demo_chair"/>
+            <field name="product_name">Ergonomic Office Chair</field>
+            <field name="description">Comfortable ergonomic chair with lumbar support</field>
+            <field name="quantity">2</field>
+            <field name="unit_price">250.00</field>
+            <field name="sequence">20</field>
+        </record>
+        
+        <record id="order_demo_7_item_3" model="order.management.item">
+            <field name="order_id" ref="order_demo_7"/>
+            <field name="product_id" ref="product_demo_lamp"/>
+            <field name="product_name">Desk Lamp</field>
+            <field name="description">LED desk lamp with adjustable brightness</field>
+            <field name="quantity">2</field>
+            <field name="unit_price">65.00</field>
+            <field name="sequence">30</field>
+        </record>
+        
+        <!-- Demo Order 8: Small Draft Order -->
+        <record id="order_demo_8" model="order.management">
+            <field name="name">ORD00008</field>
+            <field name="customer_id" ref="partner_demo_customer_3"/>
+            <field name="order_date" eval="DateTime.now().strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="user_id" ref="base.user_admin"/>
+            <field name="state">draft</field>
+            <field name="notes">New customer - first order. Offer discount if they order more.</field>
+        </record>
+        
+        <record id="order_demo_8_item_1" model="order.management.item">
+            <field name="order_id" ref="order_demo_8"/>
+            <field name="product_id" ref="product_demo_keyboard"/>
+            <field name="product_name">Wireless Keyboard</field>
+            <field name="description">Wireless mechanical keyboard with backlight</field>
+            <field name="quantity">1</field>
+            <field name="unit_price">75.00</field>
+            <field name="sequence">10</field>
+        </record>
+        
+        <record id="order_demo_8_item_2" model="order.management.item">
+            <field name="order_id" ref="order_demo_8"/>
+            <field name="product_id" ref="product_demo_mouse"/>
+            <field name="product_name">Wireless Mouse</field>
+            <field name="description">Ergonomic wireless mouse with precision tracking</field>
+            <field name="quantity">1</field>
+            <field name="unit_price">45.00</field>
+            <field name="sequence">20</field>
+        </record>
+        
+    </data>
+</odoo>

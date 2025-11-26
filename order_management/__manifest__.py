@@ -29,6 +29,7 @@
         'views/order_management_item_views.xml',
         'views/order_menu.xml',
     ],
+    'demo': ['demo/demo_data.xml',],
     'installable':
         True,
     'application':
